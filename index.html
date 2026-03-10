@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BabyBowl — Pure Millet Nutrition for Your Baby</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6ee;
+      --warm-brown: #7b4f2e;
+      --millet: #c8833a;
+      --leaf: #5a7c4e;
+      --soft-red: #c0392b;
+      --text: #2c1a0e;
+      --muted: #8a7060;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, #f5e6d0 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8f5e1;
+      color: var(--leaf);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge::before { content: '🌾'; font-size: 14px; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 4vw, 4.2rem);
+      line-height: 1.15;
+      color: var(--warm-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 span {
+      color: var(--millet);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .trust-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--warm-brown);
+      font-weight: 500;
+    }
+
+    .trust-pill .icon {
+      width: 28px;
+      height: 28px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--millet);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(200, 131, 58, 0.35);
+    }
+
+    .cta-btn:hover {
+      background: var(--warm-brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 131, 58, 0.4);
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 3rem;
+    }
+
+    .product-visual {
+      position: relative;
+      width: 340px;
+      height: 340px;
+    }
+
+    .product-circle {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #f5e6d0, #e8d4b8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      box-shadow: 0 20px 60px rgba(123, 79, 46, 0.15);
+      animation: float 4s ease-in-out infinite;
+      margin: auto;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: white;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      white-space: nowrap;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .tag-1 { top: 20px; right: 10px; color: var(--leaf); animation-delay: 0.5s; }
+    .tag-2 { bottom: 60px; left: 0px; color: var(--millet); animation-delay: 1s; }
+    .tag-3 { top: 50%; right: -10px; color: var(--soft-red); animation-delay: 1.5s; }
+
+    /* PROBLEM SECTION */
+    .section {
+      padding: 5rem 5rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--millet);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--warm-brown);
+      margin-bottom: 1rem;
+      max-width: 600px;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pain-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 3px solid var(--millet);
+      transition: transform 0.2s;
+    }
+
+    .pain-card:hover { transform: translateY(-4px); }
+
+    .pain-emoji { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+    .pain-card h3 { font-size: 1rem; font-weight: 600; color: var(--warm-brown); margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* SOLUTION */
+    .solution-section {
+      background: var(--warm-brown);
+      color: white;
+      padding: 5rem;
+    }
+
+    .solution-section .section-label { color: #e8c99a; }
+    .solution-section .section-title { color: white; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: rgba(255,255,255,0.14); }
+
+    .feature-card .feat-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: #f5e6d0; }
+    .feature-card p { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+    /* SIGNUP FORM */
+    .signup-section {
+      padding: 6rem 5rem;
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .signup-left h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--warm-brown);
+      margin-bottom: 1rem;
+    }
+
+    .signup-left p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      width: fit-content;
+    }
+
+    .avatars { display: flex; }
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-left: -8px;
+      font-size: 16px;
+      background: #f0e0cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar:first-child { margin-left: 0; }
+    .social-proof-text { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .social-proof-text strong { color: var(--warm-brown); }
+
+    /* FORM */
+    .form-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+
+    .form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--warm-brown);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-card .form-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--warm-brown);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e8d8c8;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: #fdf6ee;
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--millet);
+      background: white;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237b4f2e' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--millet);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.25s;
+      box-shadow: 0 4px 16px rgba(200, 131, 58, 0.3);
+    }
+
+    .submit-btn:hover {
+      background: var(--warm-brown);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 131, 58, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.8rem;
+    }
+
+    /* SUCCESS STATE */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .success-state .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .success-state h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--leaf);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-state p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* QUOTE */
+    .quote-section {
+      background: #f0e8dc;
+      padding: 4rem 5rem;
+      text-align: center;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--warm-brown);
+      max-width: 700px;
+      margin: 0 auto 1rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .quote-attr {
+      font-size: 0.85rem;
+      color: var(--millet);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-brown);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+
+    footer strong { color: #e8c99a; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .section { padding: 3rem 1.5rem; }
+      .solution-section { padding: 3rem 1.5rem; }
+      .signup-section { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+      .quote-section { padding: 3rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="badge">Now accepting early interest</div>
+      <h1>
+        Feed your baby
+        <span>the honest way.</span>
+      </h1>
+      <p class="hero-desc">
+        BabyBowl is a clean-label, millet-based instant meal mix for infants aged 6–24 months. 
+        No added sugar. No preservatives. Ready in under 1 minute. 
+        Built on traditional Indian grains, trusted by parents.
+      </p>
+      <div class="trust-row">
+        <div class="trust-pill"><div class="icon">🌾</div> Millet-Based</div>
+        <div class="trust-pill"><div class="icon">🚫</div> Zero Sugar</div>
+        <div class="trust-pill"><div class="icon">🏥</div> FSSAI Compliant</div>
+        <div class="trust-pill"><div class="icon">⚡</div> 1-Min Prep</div>
+      </div>
+      <a href="#signup" class="cta-btn">Get Early Access →</a>
+    </div>
+    <div class="hero-right">
+      <div class="product-visual">
+        <div class="product-circle">🥣</div>
+        <div class="floating-tag tag-1">✅ No Added Sugar</div>
+        <div class="floating-tag tag-2">🌾 Ragi + Millets</div>
+        <div class="floating-tag tag-3">👶 6–24 months</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Every parent deserves to feel confident feeding their baby.</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-emoji">😰</span>
+        <h3>Nutrition anxiety is real</h3>
+        <p>Most parents aren't sure if their baby is getting enough iron, calcium, or protein — especially during the 6–24 month complementary feeding window.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-emoji">🤷</span>
+        <h3>Information overload</h3>
+        <p>YouTube, Instagram, family elders — everyone says something different. There's no single trusted, structured source for what to feed and how much.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-emoji">✈️</span>
+        <h3>Travel & emergencies</h3>
+        <p>When you're traveling or exhausted, you reach for packaged food. But you don't trust what's in it — and you feel guilty for it.</p>
+      </div>
+      <div class="pain-card">
+        <span class="pain-emoji">🏭</span>
+        <h3>Packaged food you can't trust</h3>
+        <p>Commercial baby foods claim to be healthy, but parents are skeptical of "organic" labels, hidden sugars, and opaque ingredient sourcing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="solution-section">
+    <div class="section-label">Our Solution</div>
+    <h2 class="section-title">Clean nutrition, when home cooking isn't possible.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feat-icon">🌾</span>
+        <h3>Millet-Based Formula</h3>
+        <p>Ragi, Foxtail, Little Millet, Kodo Millet — traditional Indian grains already familiar in your kitchen, now in a trusted, convenient format.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🔬</span>
+        <h3>13 Essential Nutrients</h3>
+        <p>Iron, Calcium, Zinc, Vitamin D, Protein, Fibre — everything your baby needs for brain, bone, and immune development in one serving.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🚫</span>
+        <h3>Zero Sugar. Zero Preservatives.</h3>
+        <p>No added sugar, no artificial additives, no preservatives. Clean-label transparency — every ingredient listed, nothing hidden.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">⚡</span>
+        <h3>Ready in Under 1 Minute</h3>
+        <p>Just add warm water or milk. Perfect for travel, emergencies, daycare handovers, and exhausted evenings.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">📍</span>
+        <h3>Traceable Sourcing</h3>
+        <p>Every pack carries a QR code linking to the farm origin, processing date, and lab test results. Not a claim — a paper trail.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">👨‍⚕️</span>
+        <h3>Doctor-Aligned</h3>
+        <p>Formulated against WHO, UNICEF, and FSSAI infant feeding guidelines. Designed for paediatricians to recommend with confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <p class="quote-text">"I just want clarity, safety, and trust. I don't want to keep second-guessing every feeding decision."</p>
+    <p class="quote-attr">— Urban mother, Mumbai | BabyBowl customer research interview</p>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup-section" id="signup">
+    <div class="signup-left">
+      <div class="section-label">Early Access</div>
+      <h2>Be the first to try BabyBowl.</h2>
+      <p>We're doing a limited early access programme for parents in select cities. Sign up and we'll reach out with a free trial pack when we launch.</p>
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="avatar">👩</div>
+          <div class="avatar">👨</div>
+          <div class="avatar">👩</div>
+          <div class="avatar">👨</div>
+        </div>
+        <div class="social-proof-text"><strong>47 parents</strong> have already signed up</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div id="form-content">
+        <h3>Reserve your trial pack</h3>
+        <p class="form-subtitle">Takes 60 seconds. No payment required.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" id="name" placeholder="Priya Sharma" required />
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" placeholder="priya@email.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="phone" placeholder="+91 98765 43210" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" id="city" placeholder="Bangalore" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Baby's Age</label>
+          <select id="babyAge">
+            <option value="">Select age range</option>
+            <option value="0-6 months">0–6 months (breastfeeding stage)</option>
+            <option value="6-12 months">6–12 months</option>
+            <option value="12-18 months">12–18 months</option>
+            <option value="18-24 months">18–24 months</option>
+            <option value="24+ months">24+ months</option>
+            <option value="Expecting">Currently expecting</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>How often do you use packaged baby food?</label>
+          <select id="packagingFrequency">
+            <option value="">Select frequency</option>
+            <option value="Daily">Daily</option>
+            <option value="Few times a week">A few times a week</option>
+            <option value="Only during travel/emergencies">Only during travel or emergencies</option>
+            <option value="Rarely / Never">Rarely or never</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>What would you pay for 30 servings?</label>
+          <select id="willingToPay">
+            <option value="">Select range</option>
+            <option value="Under ₹500">Under ₹500</option>
+            <option value="₹500–₹750">₹500–₹750</option>
+            <option value="₹750–₹1000">₹750–₹1000</option>
+            <option value="Over ₹1000">Over ₹1000 if quality is proven</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>How did you hear about us?</label>
+          <select id="howHeard">
+            <option value="">Select option</option>
+            <option value="Doctor / Paediatrician">Doctor / Paediatrician</option>
+            <option value="Friend / Family">Friend or Family</option>
+            <option value="Instagram / Social Media">Instagram / Social Media</option>
+            <option value="Parenting Group / WhatsApp">Parenting Group / WhatsApp</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+          Reserve My Free Trial Pack →
+        </button>
+        <p class="form-note">🔒 No spam. No payment. Just a heads-up when we launch.</p>
+      </div>
+
+      <div class="success-state" id="success-state">
+        <span class="success-icon">🎉</span>
+        <h3>You're on the list!</h3>
+        <p>Thank you for signing up. We'll reach out with your free trial pack details as soon as we launch in your city.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>BabyBowl</strong> — Nutritional food for your baby's first 1000 days.<br/>
+    Made with ❤️ by a team of parents. © 2026 BabyBowl.
+  </footer>
+
+  <script>
+    async function handleSubmit() {
+      const btn = document.getElementById('submitBtn');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !email) {
+        alert('Please enter your name and email to continue.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Reserving your spot...';
+
+      const payload = {
+        name,
+        email,
+        phone: document.getElementById('phone').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        babyAge: document.getElementById('babyAge').value,
+        packagingFrequency: document.getElementById('packagingFrequency').value,
+        willingToPay: document.getElementById('willingToPay').value,
+        howHeard: document.getElementById('howHeard').value
+      };
+
+      try {
+        const res = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('form-content').style.display = 'none';
+          document.getElementById('success-state').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again.');
+          btn.disabled = false;
+          btn.textContent = 'Reserve My Free Trial Pack →';
+        }
+      } catch (err) {
+        alert('Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Reserve My Free Trial Pack →';
+      }
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
